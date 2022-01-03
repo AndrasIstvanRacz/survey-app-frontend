@@ -1,0 +1,25 @@
+.NavButtonsContainer{
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.5);
+}
+
+.NavButtons {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+.NavButtons:hover{
+    background-color: #242424;
+}
+
+.NavButtons:active{
+    background-color: #212121;
+}
+
