@@ -1,8 +1,7 @@
 import React from "react";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/Home/Home";
-
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
 class App extends React.Component {
