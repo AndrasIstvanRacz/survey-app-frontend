@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/Home/Home";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import "./AppStyle.css"
 
 
 class App extends React.Component {
