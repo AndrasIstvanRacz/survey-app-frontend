@@ -17,7 +17,7 @@ class App extends React.Component {
             <Route
               path="*"
               element={
-                <main style={{ padding: "1rem" }}>
+                <main style={{ padding: "1rem" , color: "white"}}>
                   <p>There's nothing here!</p>
                 </main>
               }
