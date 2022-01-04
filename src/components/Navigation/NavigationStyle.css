@@ -2,24 +2,25 @@
     position: sticky;
     top: 0;
     overflow: hidden;
-    background-color: #2e2e2e;
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,.5);
+    background-color: white;
+    box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
 }
 
 .NavButtons {
     float: left;
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 12px 15px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .NavButtons:hover{
-    background-color: #242424;
+    background-color:rgba(195,145,137,0.5);
 }
 
 .NavButtons:active{
-    background-color: #212121;
+    background-color:rgba(195,145,137,0.7);
 }
 
