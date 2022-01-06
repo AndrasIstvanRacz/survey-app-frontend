@@ -9,6 +9,7 @@ class Navigation extends React.Component {
         <div className="NavButtonsContainer">
           <Link className="NavButtons" to="/">Home</Link>
           <Link className="NavButtons" to="/">placeholder</Link>
+          <Link className="LoginButton" to="/login">Log In</Link>
         </div>
     );
   }
