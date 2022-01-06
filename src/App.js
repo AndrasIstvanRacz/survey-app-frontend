@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "./components/Navigation/Navigation";
-import Home from "./components/Home/Home";
+import HomeTab from "./components/HomeTab/HomeTab";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./AppStyle.css"
 import LoginTab from "./components/LoginTab/LoginTab";
@@ -14,7 +14,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Navigation/>
           <Routes>
-            <Route path="/" element={<Home />}/>
+            <Route path="/" element={<HomeTab />}/>
             <Route path="/login" element={<LoginTab />}/>
             <Route
               path="*"

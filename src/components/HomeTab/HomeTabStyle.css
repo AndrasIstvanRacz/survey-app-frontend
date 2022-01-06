@@ -3,7 +3,8 @@
     margin-left: auto;
     padding-left: 10px;
     padding-right: 10px;
-    width: 60%;
+    width: 90%;
+    max-width: 1500px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
