@@ -16,11 +16,20 @@
     font-weight: bold;
 }
 
-.NavButtons:hover{
-    background-color:rgba(195,145,137,0.5);
+.LoginButton {
+    float: right;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.NavButtons:active{
-    background-color:rgba(195,145,137,0.7);
+.LoginButton:hover, .NavButtons:hover{
+    background-color:rgba(195,145,137,0.1);
 }
 
+.LoginButton:hover, .NavButtons:active{
+    background-color: rgba(195,145,137,0.2);
+}
