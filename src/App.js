@@ -13,6 +13,7 @@ class App extends React.Component {
       <>
         <BrowserRouter>
           <Navigation/>
+
           <Routes>
             <Route path="/" element={<HomeTab />}/>
             <Route path="/login" element={<LoginTab />}/>
