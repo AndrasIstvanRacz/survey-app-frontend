@@ -6,7 +6,7 @@ import Logo from "./icon/logo.png"
 
 class Navigation extends React.Component {
 
-  myFunction = () => {
+  DropDownOnClick = () => {
     let x = document.getElementById("navbarLinks");
 
     if (x.className === "NavbarLinks") {
@@ -26,7 +26,7 @@ class Navigation extends React.Component {
           <img className="Logo" src={require("./icon/logo.png")} alt="survey app"/>
           Survey App
         </div>
-        <div className="ToggleButton" onClick={this.myFunction}>
+        <div className="ToggleButton" onClick={this.DropDownOnClick}>
           <span className="Bar"></span>
           <span className="Bar"></span>
           <span className="Bar"></span>
