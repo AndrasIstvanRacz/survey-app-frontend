@@ -11,8 +11,14 @@ class Navigation extends React.Component {
 
     if (x.className === "NavbarLinks") {
       x.className += " active";
-      console.log(x.className)
     } else {
+      x.className = "NavbarLinks";
+    }
+  }
+
+  DropDownCloseOnClick = () => {
+    let x = document.getElementById("navbarLinks");
+    if (x.className === "NavbarLinks active") {
       x.className = "NavbarLinks";
     }
   }
@@ -32,9 +38,9 @@ class Navigation extends React.Component {
           <span className="Bar"></span>
         </div>
         <div className="NavbarLinks" id="navbarLinks">
-          <Link to="/">Home</Link>
-          <Link to="/">Surveys</Link>
-          <Link to="/login">Log In</Link>
+          <Link to="/" onClick={this.DropDownCloseOnClick}>Home</Link>
+          <Link to="/" onClick={this.DropDownCloseOnClick}>Surveys</Link>
+          <Link to="/login" onClick={this.DropDownCloseOnClick}>Log In</Link>
         </div>
 
 
