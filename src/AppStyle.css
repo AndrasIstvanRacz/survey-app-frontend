@@ -1,4 +1,10 @@
-body{
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
     background-image: url("background.svg");
     background-attachment:  fixed;
     font-family: Oxygen, sans-serif;
