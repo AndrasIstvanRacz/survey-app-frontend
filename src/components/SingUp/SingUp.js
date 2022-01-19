@@ -2,8 +2,8 @@ import React from "react";
 
 export function SingUp() {
   return (
-    <form className="LoginForm">
-      <h1 className="LoginTitle">Sing Up</h1>
+    <form className="Form">
+      <h1 className="FormTitle">Sing Up</h1>
       <input className="FormInput"
              type="text"
              placeholder="Enter your username"/>

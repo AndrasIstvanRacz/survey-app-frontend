@@ -16,11 +16,14 @@ class LoginTab extends React.Component{
   render() {
     return (
       <div className="Container">
-        {this.state.isLogin ? <Login/> : <SingUp/>}
-        <p className="FormChangeButton" onClick={this.changeToSingUp}>
-          {this.state.isLogin ? "Sing Up" : "Log In"}
-        </p>
+        <div className="FormContainer">
+          {this.state.isLogin ? <Login/> : <SingUp/>}
+          <p className="FormChangeButton" onClick={this.changeToSingUp}>
+            {this.state.isLogin ? "Sing Up" : "Log In"}
+          </p>
+        </div>
       </div>
+
     );
   }
 
