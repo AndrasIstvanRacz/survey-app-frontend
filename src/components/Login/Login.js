@@ -1,17 +1,68 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
+import {handleLogIn, errorMessage} from "../AuthForm/AuthFormViewModel";
+import {setCookie} from "../utils/cookieHandler";
 
-export function Login() {
-  return (
-    <form className="Form">
-      <h1 className="FormTitle">Log In</h1>
-      <input className="FormInput"
-             type="text"
-             placeholder="Enter your username"/>
-      <input className="FormInput"
-             type="password"
-             placeholder="Enter your password"/>
-      <input className="FormButton"
-             type="button" value="Log In"/>
-    </form>
-  )
+export class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      redirect: false,
+      authError: "AuthError"
+    }
+  }
+
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to={{
+        pathname: '/create'
+      }}/>
+    }
+    return (
+      <form className="Form">
+        <h1 className="FormTitle">Log In</h1>
+        <p id="logInInformation" className="AuthError">Incorrect Username or Password</p>
+        <input className="FormInput"
+               type="text"
+               placeholder="Enter your username"
+               onChange={e => this.setState(
+                 {username: e.target.value})}
+               value={this.state.username}/>
+        <input className="FormInput"
+               type="password"
+               placeholder="Enter your password"
+               onChange={e => this.setState(
+                 {password: e.target.value})}
+               value={this.state.password}/>
+        <input className="FormButton"
+               type="button"
+               value="Log In"
+               onClick={this.onLogIn}/>
+      </form>
+    )
+  }
+
+  onLogIn = event => {
+    event.preventDefault()
+    let self = this
+    handleLogIn(this.state.username, this.state.password)
+      .then(function (response) {
+        setCookie('userSession', response.data, 14);
+        self.setState({
+          username: "",
+          password: "",
+          redirect: true
+        })
+        errorMessage("logInInformation", "AuthError")
+      }).catch(function (reason) {
+      self.setState({
+        password: ""
+      })
+      errorMessage("logInInformation", "AuthError active")
+      console.log("Incorrect username or password ")
+    })
+  }
+
 }
