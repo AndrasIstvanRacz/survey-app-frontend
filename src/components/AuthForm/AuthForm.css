@@ -1,0 +1,90 @@
+.Container {
+    padding-top: 100px;
+}
+
+.FormContainer {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    overflow: hidden;
+    box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, .25);
+}
+
+.FormTitle {
+    margin: 30px auto 20px;
+}
+
+.Form {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+
+.FormInput {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: large;
+}
+
+.FormInput:focus {
+    outline: none;
+    border: none;
+    border-bottom: thin solid black;
+}
+
+.FormButton {
+    border: none;
+    background: dodgerblue;
+    color: white;
+    width: 50%;
+    height: 40px;
+    margin: 20px auto 30px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.FormButton:hover {
+    box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, .2);
+}
+
+.FormButton:active {
+    box-shadow: none;
+}
+
+.FormChangeButton {
+    margin: 0 auto 30px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.FormChangeButton:hover {
+    margin: 0 auto 30px;
+    font-size: large;
+    text-decoration: underline black;
+}
+
+
+.AuthError {
+    display: none;
+}
+
+.AuthError.active {
+    display: flex;
+    color: red;
+    margin: 0;
+}
+
+
+
