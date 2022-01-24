@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "./NavigationStyle.css"
-
+import {getCookie} from "../utils/cookieHandler";
+import {SingUp} from "../SingUp/SingUp";
 
 class Navigation extends React.Component {
 
@@ -34,9 +35,8 @@ class Navigation extends React.Component {
           <span className="Bar"/>
         </div>
         <div className="NavbarLinks" id="navbarLinks">
-          <Link to="/" onClick={this.DropDownCloseOnClick}>Home</Link>
           <Link to="/" onClick={this.DropDownCloseOnClick}>Surveys</Link>
-          <Link to="/login" onClick={this.DropDownCloseOnClick}>Log In</Link>
+          <Link to="/create" onClick={this.DropDownCloseOnClick}>Create</Link>
         </div>
       </div>
     );
