@@ -1,34 +1,36 @@
 import React from "react";
 import Navigation from "./components/Navigation/Navigation";
-import HomeTab from "./components/HomeTab/HomeTab";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import SurveysTab from "./components/SurveysTab/SurveysTab";
+import {BrowserRouter, Route, Routes, Switch} from "react-router-dom";
 import "./AppStyle.css"
-import LoginTab from "./components/LoginTab/LoginTab";
+import CreateTab from "./components/CreateTab/CreateTab";
+import {AuthForm} from "./components/AuthForm/AuthForm";
 
 
 class App extends React.Component {
 
+
+
   render() {
     return (
-      <>
-        <BrowserRouter>
-          <Navigation/>
-
-          <Routes>
-            <Route path="/" element={<HomeTab />}/>
-            <Route path="/login" element={<LoginTab />}/>
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem" , color: "white"}}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </>
+      <BrowserRouter>
+        <body>
+        <Navigation/>
+        <Switch>
+          <Route exact path="/">
+            <SurveysTab/>
+          </Route>
+          <Route exact path="/create">
+            <CreateTab/>
+          </Route>
+          <Route exact path="/login">
+            <AuthForm/>
+          </Route>
+        </Switch>
+        </body>
+      </BrowserRouter>
     );
   }
 }
+
 export default App;
