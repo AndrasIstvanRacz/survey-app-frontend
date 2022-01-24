@@ -1,8 +1,8 @@
 import React from "react";
 import {SurveyCard} from "../SurveyCard/SurveyCard";
-import "./HomeTabStyle.css"
+import "./SurveysTabStyle.css"
 
-class HomeTab extends React.Component {
+class SurveysTab extends React.Component {
 
   render() {
     return (
@@ -48,4 +48,4 @@ class HomeTab extends React.Component {
   }
 }
 
-export default HomeTab;
+export default SurveysTab;
