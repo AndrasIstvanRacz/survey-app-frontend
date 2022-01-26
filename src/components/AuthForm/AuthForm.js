@@ -13,7 +13,6 @@ export class AuthForm extends Component{
     }
   }
 
-
   render(){
     let changeRedirect = this.changeRedirect;
     if (this.state.redirect){
@@ -24,7 +23,7 @@ export class AuthForm extends Component{
   return (
     <div className="Container">
     <div className="FormContainer">
-      {this.state.isLogin ? <Login/> : <SingUp changeRedirect={changeRedirect.bind(this)}/>}
+      {this.state.isLogin ? <Login/> : <SingUp/>}
       <p className="FormChangeButton" onClick={this.changeToSingUp}>
         {this.state.isLogin ? "Sing Up" : "Log In"}
       </p>

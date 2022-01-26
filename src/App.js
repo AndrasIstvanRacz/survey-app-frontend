@@ -14,7 +14,6 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <body>
         <Navigation/>
         <Switch>
           <Route exact path="/">
@@ -27,7 +26,6 @@ class App extends React.Component {
             <AuthForm/>
           </Route>
         </Switch>
-        </body>
       </BrowserRouter>
     );
   }
