@@ -10,14 +10,9 @@ export class AuthForm extends Component{
     this.state={
       isLogin: true,
       redirect: false,
-      changeRedirect: this.changeRedirect.bind(this)
     }
   }
 
-  changeRedirect(asd){
-    alert('We pass argument from Child to Parent: ');
-    this.setState({redirect : asd});
-  }
 
   render(){
     let changeRedirect = this.changeRedirect;
