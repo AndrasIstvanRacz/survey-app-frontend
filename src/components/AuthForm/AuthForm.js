@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {SingUp} from "../SingUp/SingUp";
 import {Login} from "../Login/Login";
 import "./AuthForm.css";
-import {Redirect} from "react-router-dom";
 
 export class AuthForm extends Component{
   constructor() {
@@ -14,12 +13,6 @@ export class AuthForm extends Component{
   }
 
   render(){
-    let changeRedirect = this.changeRedirect;
-    if (this.state.redirect){
-      return <Redirect to={{
-        pathname:'/create'}}/>
-    }
-
   return (
     <div className="Container">
     <div className="FormContainer">
