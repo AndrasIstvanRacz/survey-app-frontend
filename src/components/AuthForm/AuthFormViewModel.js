@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'https://survey-app-frontend-deik.herokuapp.com/'
+const baseURL = 'https://survey-app-backend-deik.herokuapp.com'
 
 export async function handleSingUp(firstname, lastname, username, password) {
   return await axios.post(baseURL + '/user/registration', {
