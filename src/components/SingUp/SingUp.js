@@ -82,7 +82,7 @@ export class SingUp extends React.Component {
   onSignUp = event => {
     event.preventDefault()
     let self = this
-    if (this.state.mounted) {
+    if (this.mounted) {
       if (this.state.passwordOne === this.state.passwordTwo) {
         handleSingUp(this.state.firstname, this.state.lastname, this.state.username, this.state.passwordOne)
           .then(function (response) {
