@@ -10,8 +10,16 @@ export class Login extends React.Component {
       username: "",
       password: "",
       redirect: false,
-      authError: "AuthError"
+      authError: "AuthError",
     }
+  }
+
+  componentDidMount() {
+    this.mounted = true
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
   }
 
   render() {
@@ -47,22 +55,23 @@ export class Login extends React.Component {
   onLogIn = event => {
     event.preventDefault()
     let self = this
-    handleLogIn(this.state.username, this.state.password)
-      .then(function (response) {
-        setCookie('userSession', response.data, 14);
+    if (this.mounted) {
+      handleLogIn(this.state.username, this.state.password)
+        .then(function (response) {
+          setCookie('userSession', response.data, 14);
+          errorMessage('logInInformation', 'AuthError')
+          self.setState({
+            username: "",
+            password: "",
+            redirect: true
+          })
+        }).catch(function (reason) {
+        errorMessage('logInInformation', 'AuthError active')
         self.setState({
-          username: "",
-          password: "",
-          redirect: true
+          password: ""
         })
-        errorMessage("logInInformation", "AuthError")
-      }).catch(function (reason) {
-      self.setState({
-        password: ""
-      })
-      errorMessage("logInInformation", "AuthError active")
-      console.log("Incorrect username or password ")
-    })
-  }
 
+      })
+    }
+  }
 }

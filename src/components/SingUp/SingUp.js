@@ -13,8 +13,16 @@ export class SingUp extends React.Component {
       username: "",
       passwordOne: "",
       passwordTwo: "",
-      redirect: false
+      redirect: false,
     }
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   render() {
@@ -74,37 +82,37 @@ export class SingUp extends React.Component {
   onSignUp = event => {
     event.preventDefault()
     let self = this
-    if (this.state.passwordOne === this.state.passwordTwo) {
-      handleSingUp(this.state.firstname, this.state.lastname, this.state.username, this.state.passwordOne)
-        .then(function (response) {
-          setCookie('userSession', response.data, 14);
+    if (this.state.mounted) {
+      if (this.state.passwordOne === this.state.passwordTwo) {
+        handleSingUp(this.state.firstname, this.state.lastname, this.state.username, this.state.passwordOne)
+          .then(function (response) {
+            errorMessage('usernameError', 'AuthError')
+            errorMessage('passwordError', 'AuthError')
+            setCookie('userSession', response.data, 14);
+            self.setState({
+              firstname: "",
+              lastname: "",
+              username: "",
+              passwordOne: "",
+              passwordTwo: "",
+              redirect: true
+            })
+          }).catch(function (reason) {
+          errorMessage('passwordError', 'AuthError')
+          errorMessage('usernameError', 'AuthError active')
           self.setState({
-            firstname: "",
-            lastname: "",
-            username: "",
             passwordOne: "",
-            passwordTwo: "",
-            redirect: true
+            passwordTwo: ""
           })
-          errorMessage("usernameError", "AuthError")
-          errorMessage("passwordError", "AuthError")
-        }).catch(function (reason) {
+        })
+      } else {
+        errorMessage('usernameError', 'AuthError')
+        errorMessage('passwordError', 'AuthError active')
         self.setState({
           passwordOne: "",
           passwordTwo: ""
         })
-        errorMessage("passwordError", "AuthError")
-        errorMessage("usernameError", "AuthError active")
-        console.log("Username already exists")
-      })
-    } else {
-      self.setState({
-        passwordOne: "",
-        passwordTwo: ""
-      })
-      errorMessage("usernameError", "AuthError")
-      errorMessage("passwordError", "AuthError active")
+      }
     }
   }
-
 }
