@@ -1,51 +1,52 @@
 import React from "react";
 import {SurveyCard} from "../SurveyCard/SurveyCard";
 import "./SurveysTabStyle.css"
+import "./SurveysViewModel"
+import {getSurveysData} from "./SurveysViewModel";
+import SurveyViewTypes from "../Enum/SurveyViewTypes";
 
 class SurveysTab extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      surveys: []
+    }
+  }
+
+  componentDidMount() {
+    this.getSurveys();
+  };
 
   render() {
     return (
       <div className="SurveyCardContainer">
-        <SurveyCard surveyname="TestSurvey1"
-                    description="Test description1 asdf jj ajdh neafnr uanfnauf nuaewui aeanweu aefnaiwenf aena wenaweneu naenfeaue fndnfuae andfnei a ean ua naenan eu ae nu nena."
-                    surveycreator="Bob1"/>
-        <SurveyCard surveyname="TestSurvey2"
-                    description="Test description2"
-                    surveycreator="Bob2"/>
-        <SurveyCard surveyname="TestSurvey3"
-                    description="Test description3"
-                    surveycreator="Bob3"/>
-        <SurveyCard surveyname="TestSurvey1"
-                    description="Test description1"
-                    surveycreator="Bob1"/>
-        <SurveyCard surveyname="TestSurvey2"
-                    description="Test description2"
-                    surveycreator="Bob2"/>
-        <SurveyCard surveyname="TestSurvey3"
-                    description="Test description3"
-                    surveycreator="Bob3"/>
-        <SurveyCard surveyname="TestSurvey1"
-                    description="Test description1"
-                    surveycreator="Bob1"/>
-        <SurveyCard surveyname="TestSurvey2"
-                    description="Test description2dfhajskdhfakjsdhgjkafhgahdfjghad;fghadujfhgjadfhgjadhfgj;had;fjghadfgh;ujarhgujadfgjhadfghjiafhgujiadfhgiujadfhguiadfhgujadhfguadhfuighdaufighauidfhgidahfguihadfghd;ifghadi;fhgijadfhg;iadhfg;jiadhfg;jiadhfijghadijkfgha;djikfgha;ijdfhguae;rghuiadhguiadfghuiaerhguiafuighaui;erghauerhgauirhga"
-                    surveycreator="Bob2"/>
-        <SurveyCard surveyname="TestSurvey3"
-                    description="Test description3"
-                    surveycreator="Bob3"/>
-        <SurveyCard surveyname="TestSurvey1"
-                    description="Test description1"
-                    surveycreator="Bob1"/>
-        <SurveyCard surveyname="TestSurvey2"
-                    description="Test description2"
-                    surveycreator="Bob2"/>
-        <SurveyCard surveyname="TestSurvey3"
-                    description="Test description3"
-                    surveycreator="Bob3"/>
+        {this.state.surveys.map((survey, index) => (
+          <SurveyCard
+            key={index}
+            id={survey.id}
+            surveyname={survey.title}
+            surveycreator={survey.username}
+            description={survey.description}
+            type={SurveyViewTypes.Fill}
+          />))}
       </div>
     );
   }
+
+  getSurveys = () => {
+    let self = this
+    getSurveysData()
+      .then(function (response) {
+        self.setState({surveys: response.data})
+        console.log('Get todos: ', self.state.surveys)
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 }
 
 export default SurveysTab;

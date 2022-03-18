@@ -9,3 +9,7 @@ body {
     background-attachment:  fixed;
     font-family: Oxygen, sans-serif;
 }
+
+.Container {
+    padding-top: 100px;
+}

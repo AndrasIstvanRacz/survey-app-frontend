@@ -1,7 +1,6 @@
 import React from "react";
-import "./CreateTabStyle.css"
 import {eraseCookie, getCookie} from "../utils/cookieHandler";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 
 class CreateTab extends React.Component {
@@ -19,13 +18,13 @@ class CreateTab extends React.Component {
   }
 
   render() {
-
     return (
       <div className="Container">
         {this.state.userSession ?
           <div>Sikerult</div>
           :
-          <Redirect to={{pathname: '/login'}}/>}
+          <Navigate to="/login"/>
+          }
         <button onClick={this.onLogOut}>Log Out</button>
       </div>
 

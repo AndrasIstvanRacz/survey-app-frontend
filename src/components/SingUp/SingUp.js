@@ -1,8 +1,8 @@
 import React from "react";
 import {handleSingUp, errorMessage} from "../AuthForm/AuthFormViewModel";
 import {setCookie} from "../utils/cookieHandler";
+import {Navigate} from "react-router-dom";
 
-import {Redirect} from "react-router-dom";
 
 export class SingUp extends React.Component {
   constructor(props) {
@@ -27,9 +27,7 @@ export class SingUp extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={{
-        pathname: '/create'
-      }}/>
+      return <Navigate to="/create"/>
     }
     return (
       <form className="Form">

@@ -1,10 +1,12 @@
 import React from "react";
 import Navigation from "./components/Navigation/Navigation";
 import SurveysTab from "./components/SurveysTab/SurveysTab";
-import {BrowserRouter, Route, Routes, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./AppStyle.css"
 import CreateTab from "./components/CreateTab/CreateTab";
 import {AuthForm} from "./components/AuthForm/AuthForm";
+import SurveyView from "./components/OpenSurvey/SurveyView";
+import WrappedSurveyView from "./components/OpenSurvey/WrappedSurveyView";
 
 
 class App extends React.Component {
@@ -15,17 +17,22 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Navigation/>
-        <Switch>
-          <Route exact path="/">
-            <SurveysTab/>
-          </Route>
-          <Route exact path="/create">
-            <CreateTab/>
-          </Route>
-          <Route exact path="/login">
-            <AuthForm/>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<SurveysTab/>}/>
+          <Route path="/create" element={<CreateTab/>}/>
+          <Route path="/login" element={<AuthForm/>}/>
+          <Route path="/view/:type/:id" element={<WrappedSurveyView/>}/>
+
+
+          {/*<Route*/}
+          {/*  path="*"*/}
+          {/*  element={*/}
+          {/*    <main style={{ padding: "1rem" }}>*/}
+          {/*      <p>There's nothing here!</p>*/}
+          {/*    </main>*/}
+          {/*  }/>*/}
+
+        </Routes>
       </BrowserRouter>
     );
   }

@@ -1,7 +1,3 @@
-.Container {
-    padding-top: 100px;
-}
-
 .FormContainer {
     margin-right: auto;
     margin-left: auto;
@@ -56,7 +52,7 @@
 }
 
 .FormButton:hover {
-    box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, .2);
+    box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, .3);
 }
 
 .FormButton:active {
@@ -71,7 +67,6 @@
 
 .FormChangeButton:hover {
     margin: 0 auto 30px;
-    font-size: large;
     text-decoration: underline black;
 }
 
