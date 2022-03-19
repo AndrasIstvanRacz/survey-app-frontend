@@ -2,7 +2,6 @@ import React from "react";
 import "./SurveyViewStyle.css";
 import SurveyQuestionTypeFill from "../SurveyQuestionTypeFill/SurveyQuestionTypeFill";
 import {getSurveyById, saveAnswers} from "./SurveyViewViewModel";
-import {Navigate} from "react-router-dom";
 
 class SurveyView extends React.Component {
 

@@ -7,10 +7,10 @@ class SurveyQuestionTypeFill extends React.Component {
   render() {
     let answers = this.props.answers
     return (
-      <div onChange={this.props.handler}>
+      <div onChange={this.props.handler} key={this.props.index}>
         <p>{this.props.question}</p>
-        {answers.map(a => (
-          <div className="SAnswers">
+        {answers.map((a, index) => (
+          <div className="SAnswers" key={index}>
             <input className="RadioButton" type="radio"
                    id={this.props.index}
                    name={"answer" + this.props.index}

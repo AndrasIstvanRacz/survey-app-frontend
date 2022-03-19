@@ -7,5 +7,5 @@ export async function getSurveyById(id){
 }
 
 export async function saveAnswers(answers){
-  return await axios.post(baseURL + '/survey/saveAnswers?pickedAnswers=' + answers)
+  return await axios.post(baseURL + '/survey/saveAnswers',  {answers})
 }
