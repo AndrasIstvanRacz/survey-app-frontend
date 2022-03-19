@@ -8,6 +8,7 @@
     align-items: center;
     background-color: white;
     flex-direction: column;
+    overflow: hidden;
     box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, .25);
 }
 
@@ -23,6 +24,7 @@
 }
 
 .SForm {
+    overflow: hidden;
     margin: auto;
     width: 90%;
 }
@@ -35,7 +37,7 @@
 }
 
 .BackBtn {
-    margin: 2rem;
+    margin: 1rem 0.5rem;
     padding: 0.75rem 2rem;
     border: none;
     font-size: large;
@@ -44,7 +46,7 @@
 }
 
 .DoneBtn {
-    margin: 2rem;
+    margin: 1rem 0.5rem;
     padding: 0.75rem 2rem;
     border: none;
     font-size: large;
@@ -63,4 +65,15 @@
 
 .BackBtn:hover {
     text-decoration: underline black;
+}
+
+@media (max-width: 337px) {
+    .DoneBtn {
+        order: 1
+    }
+    .BackBtn {
+        order: 2;
+        margin-top: 0;
+        padding: 0 2rem;
+    }
 }
