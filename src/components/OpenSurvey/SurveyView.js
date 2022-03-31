@@ -1,14 +1,18 @@
 import React from "react";
-import "./SurveyViewStyle.css";
-import SurveyQuestionTypeFill from "../SurveyQuestionTypeFill/SurveyQuestionTypeFill";
-import {getSurveyById, saveAnswers} from "./SurveyViewViewModel";
-import {Navigate} from "react-router-dom";
+import {getSurveyById, getSurveyByIdWithAuth, saveAnswers} from "./SurveyViewViewModel";
+import SurveyFill from "../SurveyFill/SurveyFill";
+import surveyViewTypes from "../Enum/SurveyViewTypes";
+import SurveyStats from "../SurveyStats/SurveyStats";
+import {LinearProgress, Skeleton} from "@mui/material";
+import {getCookie} from "../utils/cookieHandler";
 
 class SurveyView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handler = this.handler.bind(this)
+    this.updatePickedAnswerList = this.updatePickedAnswerList.bind(this)
+    this.onClickBack = this.onClickBack.bind(this)
+    this.onClickDone = this.onClickDone.bind(this)
     this.state = {
       id: props.params.id,
       type: props.params.type,
@@ -16,36 +20,62 @@ class SurveyView extends React.Component {
       title: "",
       description: "",
       questions: [],
-      error: false
+      error: false,
+      guest: true,
+      token: getCookie("userSession")
     }
   }
 
   componentDidMount() {
-    getSurveyById(this.state.id).then(r => {
-      const survey = r.data;
-      this.setState({
-        title: survey.title,
-        description: survey.description,
-        questions: survey.questions,
-        error: false
+    if (this.state.type === surveyViewTypes.Fill.name) {
+      getSurveyById(this.state.id).then(r => {
+        const survey = r.data;
+        this.setState({
+          title: survey.title,
+          description: survey.description,
+          questions: survey.questions,
+          error: false,
+          guest: true
+        })
+      }).catch(r => {
+        this.setState({
+          error: true
+        })
       })
-    }).catch(r => {
-      this.setState({
-        error: true
+    }
+    else if(this.state.type === surveyViewTypes.Statistics.name){
+      getSurveyByIdWithAuth(this.state.token, this.state.id).then(r => {
+        const survey = r.data;
+        this.setState({
+          title: survey.title,
+          description: survey.description,
+          questions: survey.questions,
+          error: false,
+          guest: false
+        })
+      }).catch(r => {
+        this.setState({
+          error: true
+        })
       })
-    })
+    }
+
+
+
+
   }
 
-  handler(event) {
-    console.log(event.target.value);
-    console.log(event.target.id);
+  updatePickedAnswerList = (event) => {
     this.state.pickedAnswers[event.target.id] = event.target.value
-    console.log(this.state.pickedAnswers);
   }
 
   render() {
-    if (this.state.title === "" && !this.state.error) {
-      return <></>
+    if (this.state.title === "" || this.state.error) {
+      return (
+        <div>
+          <LinearProgress/>
+        </div>
+      )
     }
     if (this.state.error) {
       return (<div className="Container">
@@ -57,34 +87,34 @@ class SurveyView extends React.Component {
         </div>
       </div>)
     }
+
+
     return (
       <div className="Container">
-        <div className="QuestionContainer">
-          <h2 className="STitle">{this.state.title}</h2>
-          <p className="SDescription">{this.state.description}</p>
-          <form className="SForm" onSubmit={this.onClickDone}>
-            {this.state.questions.map((q, index) => (
-              <SurveyQuestionTypeFill
-                key={index}
-                index={index}
-                question={q.question}
-                answers={q.answers}
-                handler={this.handler}/>
-            ))}
-            <div className="Buttons">
-              <button className="BackBtn" onClick={this.onClickBack}>Back</button>
-              <button className="DoneBtn" type="submit">Done</button>
-            </div>
-          </form>
-        </div>
+        {this.state.guest ?
+          <SurveyFill title={this.state.title}
+                      description={this.state.description}
+                      questions={this.state.questions}
+                      updatePickedAnswerList={this.updatePickedAnswerList}
+                      handelBack={this.onClickBack}
+                      handleDone={this.onClickDone}/>
+          :
+          <SurveyStats title={this.state.title}
+                       description={this.state.description}
+                       questions={this.state.questions}
+                       updatePickedAnswerList={this.updatePickedAnswerList}
+                       handelBack={this.onClickBack}
+                       handleDone={this.onClickDone}/>
+        }
       </div>
-
     );
+
+
   }
 
   onClickBack = e => {
     e.preventDefault()
-    this.props.navigate("/");
+    this.props.navigate(-1);
   }
 
   onClickDone = e => {
@@ -92,11 +122,7 @@ class SurveyView extends React.Component {
     saveAnswers(this.state.pickedAnswers).then(r => {
       this.props.navigate("/");
     })
-
-
   }
-
-
 }
 
 export default SurveyView;

@@ -9,3 +9,17 @@ export async function getSurveyById(id){
 export async function saveAnswers(answers){
   return await axios.post(baseURL + '/survey/saveAnswers',  {pickedAnswers: answers})
 }
+
+export async function getSurveyByIdWithAuth(token, id) {
+  return await axios.get(baseURL + '/survey/getByIdWithAuth',
+    {
+      headers:
+        {
+          Authorization: "Bearer " + token
+        },
+      params:
+        {
+          surveyId: id
+        }
+    })
+}

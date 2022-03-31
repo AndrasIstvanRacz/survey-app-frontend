@@ -86,7 +86,7 @@ export class SingUp extends React.Component {
           .then(function (response) {
             errorMessage('usernameError', 'AuthError')
             errorMessage('passwordError', 'AuthError')
-            setCookie('userSession', response.data, 14);
+            setCookie('userSession', response.data, 30);
             self.setState({
               firstname: "",
               lastname: "",

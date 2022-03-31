@@ -1,8 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "./NavigationStyle.css"
-import {getCookie} from "../utils/cookieHandler";
-import {SingUp} from "../SingUp/SingUp";
+
 
 class Navigation extends React.Component {
 

@@ -77,3 +77,15 @@
         padding: 0 2rem;
     }
 }
+
+.SAnswers {
+    margin: auto;
+}
+
+.RadioButton {
+    margin: 0.5rem 1rem;
+}
+
+.Answer{
+    margin-bottom: 12px;
+}

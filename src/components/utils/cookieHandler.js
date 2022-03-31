@@ -2,25 +2,35 @@ export function setCookie(name, value, days) {
   let expires = "";
   if (days) {
     let date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
+    date.setDate(date.getDate() + 30);
+    expires = date;
   }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  let cookie = name + "=" + (value || "") + ",Expires=" + (expires || "");
+  document.cookie = cookie
+  console.log("asd: " + document.cookie)
 }
 
 export function getCookie(name) {
   let nameEQ = name + "=";
-  let ca = document.cookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) {
-      return c.substring(nameEQ.length, c.length);
+  let cookie = document.cookie.split(',');
+  if(cookie.length !== 1){
+    let expirationDate = new Date(cookie[1].split('=')[1]) || ""
+    let currentDate = new Date()
+    if (currentDate.getTime() <= expirationDate.getTime()) {
+      for (let i = 0; i < cookie.length; i++) {
+        let c = cookie[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
     }
+    eraseCookie(name)
+    return null;
   }
   return null;
 }
 
 export function eraseCookie(name) {
-  document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  document.cookie = name + '=,Expires=';
 }

@@ -27,7 +27,7 @@ export class Login extends React.Component {
       return <Navigate to="/create"/>
     }
     return (
-      <form className="Form">
+      <form className="Form" onSubmit={this.onLogIn}>
         <h1 className="FormTitle">Log In</h1>
         <p id="logInInformation" className="AuthError">Incorrect Username or Password</p>
         <input className="FormInput"
@@ -43,9 +43,8 @@ export class Login extends React.Component {
                  {password: e.target.value})}
                value={this.state.password}/>
         <input className="FormButton"
-               type="button"
-               value="Log In"
-               onClick={this.onLogIn}/>
+               type="submit"
+               value="Log In"/>
       </form>
     )
   }
@@ -56,7 +55,7 @@ export class Login extends React.Component {
     if (this.mounted) {
       handleLogIn(this.state.username, this.state.password)
         .then(function (response) {
-          setCookie('userSession', response.data, 14);
+          setCookie('userSession', response.data, 30);
           errorMessage('logInInformation', 'AuthError')
           self.setState({
             username: "",
