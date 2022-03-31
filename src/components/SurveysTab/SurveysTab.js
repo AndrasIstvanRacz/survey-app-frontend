@@ -58,13 +58,13 @@ class SurveysTab extends React.Component {
   getSurveys = () => {
 
     getSurveysData()
-      .then(function (response) {
+      .then(response => {
         this.setState({
           surveys: response.data,
           error: false
         })
       })
-      .catch(function (error) {
+      .catch(r => {
         this.setState({error: true})
       });
   }
