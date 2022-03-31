@@ -2,13 +2,9 @@ import * as React from 'react';
 import PieChart, {
   Series,
   Label,
-  Connector,
-  Size,
-  Export,
+  Connector
 } from 'devextreme-react/pie-chart';
-import {Legend, Margin} from "devextreme-react/chart";
-
-;
+import Margin from "devextreme-react/chart";
 
 export default class Chart extends React.Component {
 

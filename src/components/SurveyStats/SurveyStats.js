@@ -5,7 +5,7 @@ export default class SurveyStats extends React.Component{
   render() {
     return (<div className="QuestionContainer">
       <h1 className="STitle">{this.props.title}</h1>
-      <h2 className="SDescription">{this.props.description}</h2>
+      <h3 className="SDescription">{this.props.description}</h3>
       <div className="SForm">
         {this.props.questions.map((q, questionIndex) => (
           <div className="SChart" onChange={this.props.updatePickedAnswerList} key={questionIndex}>

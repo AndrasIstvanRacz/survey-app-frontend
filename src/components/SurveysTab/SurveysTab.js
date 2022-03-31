@@ -4,13 +4,15 @@ import "./SurveysTabStyle.css"
 import "./SurveysViewModel"
 import {getSurveysData} from "./SurveysViewModel";
 import SurveyViewTypes from "../Enum/SurveyViewTypes";
+import {LinearProgress} from "@mui/material";
 
 class SurveysTab extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      surveys: []
+      surveys: [],
+      error: false
     }
   }
 
@@ -19,6 +21,25 @@ class SurveysTab extends React.Component {
   };
 
   render() {
+    if (this.state.surveys === [] || this.state.error) {
+      return (
+        <div>
+          <LinearProgress/>
+        </div>
+      )
+    }
+
+    if (this.state.error) {
+      return (<div className="Container">
+        <div className="QuestionContainer">
+          <h1>Something went wrong!</h1>
+          <h2>Try to refresh</h2>
+          <p>or</p>
+          <button className="BackBtn" onClick={this.onClickBack}>Go Back</button>
+        </div>
+      </div>)
+    }
+
     return (
       <div className="SurveyCardContainer">
         {this.state.surveys.map((survey, index) => (
@@ -35,15 +56,16 @@ class SurveysTab extends React.Component {
   }
 
   getSurveys = () => {
-    let self = this
+
     getSurveysData()
       .then(function (response) {
-        self.setState({surveys: response.data})
-        console.log('Get todos: ', self.state.surveys)
-        console.log(response)
+        this.setState({
+          surveys: response.data,
+          error: false
+        })
       })
       .catch(function (error) {
-        console.log(error);
+        this.setState({error: true})
       });
   }
 
