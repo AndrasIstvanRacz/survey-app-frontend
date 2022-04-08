@@ -68,8 +68,6 @@ class ProfileTab extends React.Component {
     getSurveysDataByUser(this.state.userSession)
       .then(response => {
         this.setState({surveys: response.data})
-        console.log('Get todos: ', this.state.surveys)
-        console.log(response)
       })
       .catch(error => {
         console.log(error);

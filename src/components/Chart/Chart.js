@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PieChart, {
-  Size,
   Series,
   Label,
   Connector
@@ -9,16 +8,26 @@ import Margin from "devextreme-react/chart";
 
 export default class Chart extends React.Component {
 
-  render() {
-    const data = [];
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    }
+  }
+
+  componentDidMount() {
+    let list = []
     this.props.answers.map(answerData => {
-      data.push({answerText: answerData.answer, picked: answerData.picked})
+      list.push({answerText: answerData.answer, picked: answerData.picked})
     })
-    console.log(data)
+    this.setState({data: list})
+  }
+
+  render() {
     return (
         <PieChart
           id="pie"
-          dataSource={data}
+          dataSource={this.state.data}
           palette="Office"
           sizeGroup="piesGroup"
           title={this.props.question}>

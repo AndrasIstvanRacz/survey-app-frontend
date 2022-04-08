@@ -1,27 +1,41 @@
 import React from "react"
 import "./CreateSurveyStyle.css"
-import {Button, createTheme, TextareaAutosize, ThemeProvider, ToggleButton, ToggleButtonGroup} from "@mui/material";
+import {ToggleButton, ToggleButtonGroup} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import {addNewSurvey} from "./CreateSurveyViewModel";
+import {addNewSurvey, updateSurvey} from "./CreateSurveyViewModel";
 import {getCookie} from "../utils/cookieHandler";
 import {Navigate} from "react-router-dom";
+import SurveyViewTypes from "../Enum/SurveyViewTypes";
 
 
 export default class CreateSurvey extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      title: "New Survey",
-      description: "",
-      visibility: false,
+      id: props.id || "",
+      title: props.title || "New Survey",
+      description: props.description || "",
+      visibility: props.visibility || false,
       questions: [{newQuestion: "New Question", newAnswers: ["New Answer"]}],
-      userSession: getCookie('userSession') || null
+      userSession: getCookie('userSession') || ""
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.params.type === SurveyViewTypes.Edit.name) {
+      let questions = []
+      this.props.questions.map(q => {
+        let answer = []
+        q.answers.map(a => answer.push(a.answer))
+        questions.push({newQuestion: q.question, newAnswers: answer})
+      })
+      this.setState({questions: questions})
     }
   }
 
   handelChange = (e, newVisibility) => {
-    if(newVisibility !== null){
+    if (newVisibility !== null) {
       this.setState({visibility: newVisibility})
     }
   }
@@ -75,20 +89,20 @@ export default class CreateSurvey extends React.Component {
                     onChange={e => this.answerOnChange(qIndex, aIndex, e.target.value)}
                     value={answer}
                     placeholder="Answer"/>))}
-                  <button className="AddBtn"
-                          onClick={e => this.addNewAnswer(e, qIndex)}>
-                    <AddIcon/>
-                    <p>Add Answer</p>
-                  </button>
+                <button className="AddBtn"
+                        onClick={e => this.addNewAnswer(e, qIndex)}>
+                  <AddIcon/>
+                  <p>Add Answer</p>
+                </button>
               </div>
             </div>
           ))}
 
-            <button className="AddBtn"
-                    onClick={this.addNewQuestion}>
-              <AddIcon/>
-              <p>Add Question</p>
-            </button>
+          <button className="AddBtn"
+                  onClick={this.addNewQuestion}>
+            <AddIcon/>
+            <p>Add Question</p>
+          </button>
           <div className="Buttons">
             <button className="BackBtn" onClick={this.onClickBack}>Back</button>
             <button className="DoneBtn" type="submit">Save</button>
@@ -138,13 +152,23 @@ export default class CreateSurvey extends React.Component {
 
   onClickSave = e => {
     e.preventDefault()
-    addNewSurvey(this.state.title,
-      this.state.description,
-      this.state.visibility,
-      this.state.questions,
-      this.state.userSession).then(r => {
-        console.log(r)
-      this.props.navigate("/profile");
-    })
+    if (this.props.params.type === SurveyViewTypes.Edit.name) {
+      updateSurvey(this.state.id,
+        this.state.title,
+        this.state.description,
+        this.state.visibility,
+        this.state.questions,
+        this.state.userSession).then(r => {
+        this.props.navigate("/profile");
+      })
+    } else {
+      addNewSurvey(this.state.title,
+        this.state.description,
+        this.state.visibility,
+        this.state.questions,
+        this.state.userSession).then(r => {
+        this.props.navigate("/profile");
+      })
+    }
   }
 }

@@ -9,7 +9,7 @@ export default class SurveyStats extends React.Component {
     return (<div className="QuestionContainer">
       <div className="TitleBar">
         <h1>{this.props.title}</h1>
-        <EditIcon className="Icon"/>
+        <EditIcon className="Icon" onClick={this.props.handelEdit}/>
         <DeleteIcon className="Icon" onClick={this.props.handelDelete}/>
       </div>
       <h3 className="SDescription">{this.props.description}</h3>
