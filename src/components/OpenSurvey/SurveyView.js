@@ -63,7 +63,9 @@ class SurveyView extends React.Component {
   }
 
   updatePickedAnswerList = (event) => {
-    this.state.pickedAnswers[event.target.id] = event.target.value
+    let temp = this.state.pickedAnswers
+    temp[event.target.id] = event.target.value
+    this.setState({pickedAnswers: temp})
   }
 
   render() {

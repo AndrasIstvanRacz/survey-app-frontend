@@ -25,9 +25,9 @@ export default class CreateSurvey extends React.Component {
   componentDidMount() {
     if (this.props.params.type === SurveyViewTypes.Edit.name) {
       let questions = []
-      this.props.questions.map(q => {
+      this.props.questions.forEach(q => {
         let answer = []
-        q.answers.map(a => answer.push(a.answer))
+        q.answers.forEach(a => answer.push(a.answer))
         questions.push({newQuestion: q.question, newAnswers: answer})
       })
       this.setState({questions: questions})
