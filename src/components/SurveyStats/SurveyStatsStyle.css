@@ -1,0 +1,16 @@
+.TitleBar {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    overflow: hidden;
+}
+
+.Icon {
+    margin-left: .75rem;
+    cursor: pointer;
+}

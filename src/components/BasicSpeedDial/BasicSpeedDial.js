@@ -14,7 +14,8 @@ export default function BasicSpeedDial(props) {
       <SpeedDialAction
         key='New Survey'
         icon={<AddIcon/>}
-        tooltipTitle='New Survey'/>
+        tooltipTitle='New Survey'
+        onClick={props.handleNewSurvey}/>
       <SpeedDialAction
         key='Logout'
         icon={<LogoutIcon/>}

@@ -27,7 +27,7 @@ export class SingUp extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to="/create"/>
+      return <Navigate to="/profile"/>
     }
     return (
       <form className="Form">

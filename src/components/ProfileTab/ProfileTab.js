@@ -3,18 +3,20 @@ import {eraseCookie, getCookie} from "../utils/cookieHandler";
 import {Navigate} from "react-router-dom";
 import {SurveyCard} from "../SurveyCard/SurveyCard";
 import SurveyViewTypes from "../Enum/SurveyViewTypes";
-import {getSurveysDataByUser} from "./CreateTabViewModel";
+import {getSurveysDataByUser} from "./ProfileTabViewModel";
 import BasicSpeedDial from "../BasicSpeedDial/BasicSpeedDial";
 
 
-class CreateTab extends React.Component {
+class ProfileTab extends React.Component {
 
   constructor() {
     super();
+    this.onNewSurvey = this.onNewSurvey.bind(this)
+    this.onLogOut = this.onLogOut.bind(this)
     this.state = {
       surveys: [],
       loggedIn: false,
-      userSession: getCookie('userSession')
+      userSession: getCookie('userSession') || ""
     }
   }
 
@@ -29,6 +31,11 @@ class CreateTab extends React.Component {
     eraseCookie('userSession')
     this.setState({userSession: getCookie('userSession')})
   }
+
+  onNewSurvey = () =>{
+    this.props.navigate("/profile/create")
+  }
+
 
   render() {
     if (!this.state.userSession) {
@@ -50,14 +57,14 @@ class CreateTab extends React.Component {
               type={SurveyViewTypes.Statistics}
             />))}
         </div>
-        <BasicSpeedDial handleLogOut={this.onLogOut}/>
+        <BasicSpeedDial handleLogOut={this.onLogOut}
+                        handleNewSurvey={this.onNewSurvey}/>
       </>
 
     );
   }
 
   getSurveysByUser = () => {
-
     getSurveysDataByUser(this.state.userSession)
       .then(response => {
         this.setState({surveys: response.data})
@@ -71,4 +78,4 @@ class CreateTab extends React.Component {
 
 }
 
-export default CreateTab;
+export default ProfileTab;

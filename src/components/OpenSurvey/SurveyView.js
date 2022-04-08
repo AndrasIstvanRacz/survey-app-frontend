@@ -1,18 +1,15 @@
 import React from "react";
-import {getSurveyById, getSurveyByIdWithAuth, saveAnswers} from "./SurveyViewViewModel";
+import {deleteSurvey, getSurveyById, getSurveyByIdWithAuth, saveAnswers} from "./SurveyViewViewModel";
 import SurveyFill from "../SurveyFill/SurveyFill";
 import surveyViewTypes from "../Enum/SurveyViewTypes";
 import SurveyStats from "../SurveyStats/SurveyStats";
-import {LinearProgress, Skeleton} from "@mui/material";
+import {LinearProgress} from "@mui/material";
 import {getCookie} from "../utils/cookieHandler";
 
 class SurveyView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.updatePickedAnswerList = this.updatePickedAnswerList.bind(this)
-    this.onClickBack = this.onClickBack.bind(this)
-    this.onClickDone = this.onClickDone.bind(this)
     this.state = {
       id: props.params.id,
       type: props.params.type,
@@ -42,8 +39,9 @@ class SurveyView extends React.Component {
           error: true
         })
       })
-    }
-    else if(this.state.type === surveyViewTypes.Statistics.name){
+    } else if (
+      this.state.type === surveyViewTypes.Statistics.name ||
+      this.state.type === surveyViewTypes.Edit.name) {
       getSurveyByIdWithAuth(this.state.token, this.state.id).then(r => {
         const survey = r.data;
         this.setState({
@@ -59,10 +57,6 @@ class SurveyView extends React.Component {
         })
       })
     }
-
-
-
-
   }
 
   updatePickedAnswerList = (event) => {
@@ -70,7 +64,7 @@ class SurveyView extends React.Component {
   }
 
   render() {
-    if (this.state.title === "" || this.state.error) {
+    if (this.state.title === "" && !this.state.error) {
       return (
         <div>
           <LinearProgress/>
@@ -88,39 +82,56 @@ class SurveyView extends React.Component {
       </div>)
     }
 
+    if (this.state.type === surveyViewTypes.Fill.name) {
+      return (<div className="Container">
+        <SurveyFill title={this.state.title}
+                    description={this.state.description}
+                    questions={this.state.questions}
+                    updatePickedAnswerList={this.updatePickedAnswerList}
+                    handelBack={this.onClickBack}
+                    handleDone={this.onClickDone}/>
+      </div>)
+    }
 
-    return (
-      <div className="Container">
-        {this.state.guest ?
-          <SurveyFill title={this.state.title}
-                      description={this.state.description}
-                      questions={this.state.questions}
-                      updatePickedAnswerList={this.updatePickedAnswerList}
-                      handelBack={this.onClickBack}
-                      handleDone={this.onClickDone}/>
-          :
-          <SurveyStats title={this.state.title}
-                       description={this.state.description}
-                       questions={this.state.questions}
-                       updatePickedAnswerList={this.updatePickedAnswerList}
-                       handelBack={this.onClickBack}
-                       handleDone={this.onClickDone}/>
-        }
-      </div>
-    );
+    if (this.state.type === surveyViewTypes.Statistics.name) {
+      return (<div className="Container">
+        <SurveyStats
+          title={this.state.title}
+          description={this.state.description}
+          questions={this.state.questions}
+          updatePickedAnswerList={this.updatePickedAnswerList}
+          handelBack={this.onClickBack}
+          handleDone={this.onClickDone}
+          handelDelete={this.onClickDelete}/>
+      </div>)
+    }
 
-
+    if (this.state.type === surveyViewTypes.Edit.name) {
+      return (<div className="Container">
+        <SurveyStats
+          title={this.state.title}
+          description={this.state.description}
+          questions={this.state.questions}
+          updatePickedAnswerList={this.updatePickedAnswerList}
+          handelBack={this.onClickBack}
+          handleDone={this.onClickDone}/>
+      </div>)
+    }
   }
 
   onClickBack = e => {
-    e.preventDefault()
     this.props.navigate(-1);
   }
 
   onClickDone = e => {
-    e.preventDefault()
     saveAnswers(this.state.pickedAnswers).then(r => {
       this.props.navigate("/");
+    })
+  }
+
+  onClickDelete = e => {
+    deleteSurvey(this.state.token, this.state.id).then(r => {
+      this.props.navigate("/profile");
     })
   }
 }

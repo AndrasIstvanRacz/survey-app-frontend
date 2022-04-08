@@ -1,13 +1,14 @@
 import React from "react";
-import "./SurveyFill.css"
+import "./SurveyFillStyle.css"
+import {saveAnswers} from "../OpenSurvey/SurveyViewViewModel";
 
 export default class SurveyFill extends React.Component {
 
   render() {
     return (
       <div className="QuestionContainer">
-        <h2 className="STitle">{this.props.title}</h2>
-        <p className="SDescription">{this.props.description}</p>
+        <h1 className="STitle">{this.props.title}</h1>
+        <h3 className="SDescription">{this.props.description}</h3>
         <form className="SForm" onSubmit={this.props.handleDone}>
           {this.props.questions.map((q, questionIndex) => (
             <div onChange={this.props.updatePickedAnswerList} key={questionIndex}>
@@ -31,5 +32,4 @@ export default class SurveyFill extends React.Component {
       </div>
     );
   }
-
 }

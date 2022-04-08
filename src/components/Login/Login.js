@@ -24,7 +24,7 @@ export class Login extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to="/create"/>
+      return <Navigate to="/profile"/>
     }
     return (
       <form className="Form" onSubmit={this.onLogIn}>

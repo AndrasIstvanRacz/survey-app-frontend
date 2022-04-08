@@ -23,3 +23,17 @@ export async function getSurveyByIdWithAuth(token, id) {
         }
     })
 }
+
+export async function deleteSurvey(token, id) {
+  return await axios.delete(baseURL + '/survey/deleteById',
+    {
+      headers:
+        {
+          Authorization: "Bearer " + token
+        },
+      params:
+        {
+          surveyId: id
+        }
+    })
+}

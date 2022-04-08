@@ -5,10 +5,12 @@ import Navigation from "./components/Navigation/Navigation";
 import SurveysTab from "./components/SurveysTab/SurveysTab";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./AppStyle.css"
-import CreateTab from "./components/CreateTab/CreateTab";
+import ProfileTab from "./components/ProfileTab/ProfileTab";
 import {AuthForm} from "./components/AuthForm/AuthForm";
-import SurveyView from "./components/OpenSurvey/SurveyView";
+import CreateSurvey from "./components/CreateSurvey/CreateSurvey";
 import WrappedSurveyView from "./components/OpenSurvey/WrappedSurveyView";
+import WrappedProfileTab from "./components/ProfileTab/WrappedProfileTab";
+import WrappedCreateSurvey from "./components/CreateSurvey/WrappedCreateSurvey";
 
 
 class App extends React.Component {
@@ -21,10 +23,10 @@ class App extends React.Component {
         <Navigation/>
         <Routes>
           <Route path="/" element={<SurveysTab/>}/>
-          <Route path="/create" element={<CreateTab/>}/>
+          <Route path="/profile" element={<WrappedProfileTab/>}/>
           <Route path="/login" element={<AuthForm/>}/>
           <Route path="/view/:type/:id" element={<WrappedSurveyView/>}/>
-
+          <Route path="/profile/create" element={<WrappedCreateSurvey/>}/>
 
           {/*<Route*/}
           {/*  path="*"*/}

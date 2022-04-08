@@ -21,7 +21,7 @@ class SurveysTab extends React.Component {
   };
 
   render() {
-    if (this.state.surveys === [] || this.state.error) {
+    if (this.state.surveys === [] && !this.state.error) {
       return (
         <div>
           <LinearProgress/>

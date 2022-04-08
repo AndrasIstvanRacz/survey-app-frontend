@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PieChart, {
+  Size,
   Series,
   Label,
   Connector
@@ -19,6 +20,7 @@ export default class Chart extends React.Component {
           id="pie"
           dataSource={data}
           palette="Office"
+          sizeGroup="piesGroup"
           title={this.props.question}>
           <Series
             argumentField="answerText"

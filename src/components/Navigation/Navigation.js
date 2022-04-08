@@ -35,7 +35,7 @@ class Navigation extends React.Component {
         </div>
         <div className="NavbarLinks" id="navbarLinks">
           <Link to="/" onClick={this.DropDownCloseOnClick}>Surveys</Link>
-          <Link to="/create" onClick={this.DropDownCloseOnClick}>Create</Link>
+          <Link to="/profile" onClick={this.DropDownCloseOnClick}>Profile</Link>
         </div>
       </div>
     );

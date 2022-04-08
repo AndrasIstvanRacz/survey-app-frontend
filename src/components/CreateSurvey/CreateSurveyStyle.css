@@ -1,0 +1,131 @@
+.CreateSurvey {
+    margin: auto;
+    padding: 2rem 1rem;
+    width: 80%;
+    max-width: 1500px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, .25);
+}
+
+.NewTitle {
+    margin-right: auto;
+    border: none;
+    font-size: 2em;
+    font-weight: bold;
+
+}
+
+.NewTitle:focus {
+    outline: none;
+    border: none;
+    border-bottom: thin solid black;
+}
+
+.NewDescription {
+    width: 100%;
+    outline: none;
+    resize: none;
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.17rem;
+    font-weight: bold;
+    font-family: Oxygen, sans-serif;
+}
+
+.NewDescription:focus {
+    outline: none;
+    border: none;
+    border-bottom: thin solid black;
+}
+
+.NewQuestionContainer {
+    margin: 1.5rem 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.NewQuestion {
+    float: left;
+    border: none;
+    resize: none;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Oxygen, sans-serif;
+}
+
+.NewQuestion:focus {
+    outline: none;
+    border: none;
+    border-bottom: thin solid black;
+}
+
+.NewAnswerContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 1rem auto 1rem 0;
+}
+
+.NewAnswer {
+    border: none;
+    margin-bottom: .75rem;
+    font-size: 16px;
+    font-family: Oxygen, sans-serif;
+}
+
+.NewAnswer:focus {
+    outline: none;
+    border: none;
+    border-bottom: thin solid black;
+}
+
+.AddBtn {
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto 0 0;
+}
+
+.AddBtn p {
+    margin: .5rem;
+    font-size: 16px;
+    font-family: Oxygen, sans-serif;
+}
+
+.AddBtn:hover {
+    background:  rgba(0, 0, 0, .05);
+}
+
+.AddBtn:active {
+    background:  rgba(0, 0, 0, .1);
+}
+
+.VisibilityBtn {
+    width: 100%;
+}
+.Buttons {
+    width: 100%;
+}
+
+@media (max-width: 343px) {
+
+    .DoneBtn {
+        order: 1
+    }
+    .BackBtn {
+        order: 2;
+        margin-top: 0;
+        padding: 0 2rem;
+    }
+}
