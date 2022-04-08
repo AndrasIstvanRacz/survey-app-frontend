@@ -17,7 +17,7 @@ export default class Chart extends React.Component {
 
   componentDidMount() {
     let list = []
-    this.props.answers.map(answerData => {
+    this.props.answers.forEach(answerData => {
       list.push({answerText: answerData.answer, picked: answerData.picked})
     })
     this.setState({data: list})
