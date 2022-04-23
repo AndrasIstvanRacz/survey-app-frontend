@@ -124,21 +124,25 @@ class SurveyView extends React.Component {
   }
 
   onClickBack = e => {
+    e.preventDefault()
     this.props.navigate(-1);
   }
 
   onClickEdit = e => {
+    e.preventDefault()
     this.props.navigate("/view/edit/" + this.state.id);
     this.setState({type: "edit"})
   }
 
   onClickDone = e => {
+    e.preventDefault()
     saveAnswers(this.state.pickedAnswers).then(r => {
       this.props.navigate("/");
     })
   }
 
   onClickDelete = e => {
+    e.preventDefault()
     deleteSurvey(this.state.token, this.state.id).then(r => {
       this.props.navigate("/profile");
     })

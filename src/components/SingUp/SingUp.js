@@ -34,45 +34,51 @@ export class SingUp extends React.Component {
         <h1 className="FormTitle">Sing Up</h1>
         <p id="usernameError" className="AuthError">Username already exists</p>
         <p id="passwordError" className="AuthError">Passwords not matches</p>
-        <input className="FormInput"
-               type="text"
-               placeholder="Enter your Firstname"
-               autoComplete="off"
-               onChange={e => this.setState(
-                 {...this.state, firstname: e.target.value})}
-               value={this.state.firstname}/>
-        <input className="FormInput"
-               type="text"
-               placeholder="Enter your Lastname"
-               autoComplete="off"
-               onChange={e => this.setState(
-                 {lastname: e.target.value})}
-               value={this.state.lastname}/>
-        <input className="FormInput"
-               type="text"
-               placeholder="Enter your username"
-               autoComplete="off"
-               onChange={e => this.setState(
-                 {username: e.target.value})}
-               value={this.state.username}/>
-        <input className="FormInput"
-               type="password"
-               placeholder="Enter your password"
-               autoComplete="off"
-               onChange={e => this.setState(
-                 {passwordOne: e.target.value})}
-               value={this.state.passwordOne}/>
-        <input className="FormInput"
-               type="password"
-               placeholder="Enter your password again"
-               autoComplete="off"
-               onChange={e => this.setState(
-                 {...this.state, passwordTwo: e.target.value})}
-               value={this.state.passwordTwo}/>
-        <input className="FormButton"
-               type="button"
-               value="Sing Up"
-               onClick={this.onSignUp}/>
+        <input
+          className="FormInput"
+          type="text"
+          placeholder="Enter your Firstname"
+          autoComplete="off"
+          onChange={e => this.setState(
+            {...this.state, firstname: e.target.value})}
+          value={this.state.firstname}/>
+        <input
+          className="FormInput"
+          type="text"
+          placeholder="Enter your Lastname"
+          autoComplete="off"
+          onChange={e => this.setState(
+            {lastname: e.target.value})}
+          value={this.state.lastname}/>
+        <input
+          className="FormInput"
+          type="text"
+          placeholder="Enter your username"
+          autoComplete="off"
+          onChange={e => this.setState(
+            {username: e.target.value})}
+          value={this.state.username}/>
+        <input
+          className="FormInput"
+          type="password"
+          placeholder="Enter your password"
+          autoComplete="off"
+          onChange={e => this.setState(
+            {passwordOne: e.target.value})}
+          value={this.state.passwordOne}/>
+        <input
+          className="FormInput"
+          type="password"
+          placeholder="Enter your password again"
+          autoComplete="off"
+          onChange={e => this.setState(
+            {...this.state, passwordTwo: e.target.value})}
+          value={this.state.passwordTwo}/>
+        <input
+          className="FormButton"
+          type="button"
+          value="Sing Up"
+          onClick={this.onSignUp}/>
       </form>
     )
   }

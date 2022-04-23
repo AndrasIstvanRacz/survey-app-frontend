@@ -37,3 +37,4 @@ export async function deleteSurvey(token, id) {
         }
     })
 }
+

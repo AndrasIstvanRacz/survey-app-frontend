@@ -1,6 +1,5 @@
 import React from "react";
 import "./SurveyFillStyle.css"
-import {saveAnswers} from "../OpenSurvey/SurveyViewViewModel";
 
 export default class SurveyFill extends React.Component {
 
@@ -15,11 +14,13 @@ export default class SurveyFill extends React.Component {
               <p>{q.question}</p>
               {q.answers.map((a, answerIndex) => (
                 <div className="SAnswers" key={answerIndex}>
-                  <input className="RadioButton" type="radio"
-                         id={questionIndex}
-                         name={"answer_" + questionIndex}
-                         value={a.answer_id}
-                         required={true}/>
+                  <input
+                    className="RadioButton"
+                    type="radio"
+                    id={questionIndex}
+                    name={"answer_" + questionIndex}
+                    value={a.answer_id}
+                    required={true}/>
                   <label className="Answer">{a.answer}</label>
                 </div>))}
             </div>

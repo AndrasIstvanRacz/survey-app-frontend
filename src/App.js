@@ -15,9 +15,6 @@ import Nothing from "./components/Nothing/Nothing";
 
 
 class App extends React.Component {
-
-
-
   render() {
     return (
       <BrowserRouter>
@@ -34,5 +31,6 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
+
+

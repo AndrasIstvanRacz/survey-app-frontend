@@ -1,8 +1,6 @@
 import "./SurveyCardStyle.css"
 import {Link} from "react-router-dom";
 
-
-
 export function SurveyCard(props) {
   return (
     <Link className="SurveyCard" to={`/view/${props.type.name}/${props.id}`}>
