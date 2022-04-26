@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {SingUp} from "../SingUp/SingUp";
+import {SignUp} from "../SignUp/SignUp";
 import {Login} from "../Login/Login";
 import "./AuthForm.css";
 
@@ -15,9 +15,9 @@ export class AuthForm extends Component {
     return (
       <div className="Container">
         <div className="FormContainer">
-          {this.state.isLogin ? <Login/> : <SingUp/>}
+          {this.state.isLogin ? <Login/> : <SignUp/>}
           <p className="FormChangeButton" onClick={this.changeToSingUp}>
-            {this.state.isLogin ? "Sing Up" : "Log In"}
+            {this.state.isLogin ? "Sign Up" : "Log In"}
           </p>
         </div>
       </div>

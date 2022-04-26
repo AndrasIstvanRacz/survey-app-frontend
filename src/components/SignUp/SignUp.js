@@ -4,7 +4,7 @@ import {setCookie} from "../utils/cookieHandler";
 import {Navigate} from "react-router-dom";
 
 
-export class SingUp extends React.Component {
+export class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,7 @@ export class SingUp extends React.Component {
     }
     return (
       <form className="Form">
-        <h1 className="FormTitle">Sing Up</h1>
+        <h1 className="FormTitle">Sign Up</h1>
         <p id="usernameError" className="AuthError">Username already exists</p>
         <p id="passwordError" className="AuthError">Passwords not matches</p>
         <input
@@ -77,7 +77,7 @@ export class SingUp extends React.Component {
         <input
           className="FormButton"
           type="button"
-          value="Sing Up"
+          value="Sign Up"
           onClick={this.onSignUp}/>
       </form>
     )
