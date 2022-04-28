@@ -24,6 +24,16 @@ export async function getSurveyByIdWithAuth(token, id) {
     })
 }
 
+export async function getSurveyByIdShared(id) {
+  return await axios.get(baseURL + '/survey/getByIdFormShare',
+    {
+      params:
+        {
+          surveyId: id
+        }
+    })
+}
+
 export async function deleteSurvey(token, id) {
   return await axios.delete(baseURL + '/survey/deleteById',
     {

@@ -1,5 +1,5 @@
 import React from "react";
-import {deleteSurvey, getSurveyById, getSurveyByIdWithAuth, saveAnswers} from "./SurveyViewViewModel";
+import {deleteSurvey, getSurveyById, getSurveyByIdWithAuth, saveAnswers, getSurveyByIdShared} from "./SurveyViewViewModel";
 import SurveyFill from "../SurveyFill/SurveyFill";
 import surveyViewTypes from "../Enum/SurveyViewTypes";
 import SurveyStats from "../SurveyStats/SurveyStats";
@@ -59,6 +59,22 @@ class SurveyView extends React.Component {
           error: true
         })
       })
+    } else if(this.state.type === surveyViewTypes.Share.name) {
+      getSurveyByIdShared(this.state.id).then(r => {
+        const survey = r.data;
+        this.setState({
+          title: survey.title,
+          description: survey.description,
+          questions: survey.questions,
+          visibility: survey.visibility,
+          error: false,
+          guest: true
+        })
+      }).catch(r => {
+        this.setState({
+          error: true
+        })
+      })
     }
   }
 
@@ -87,7 +103,8 @@ class SurveyView extends React.Component {
       </div>)
     }
 
-    if (this.state.type === surveyViewTypes.Fill.name) {
+    if (this.state.type === surveyViewTypes.Fill.name ||
+      this.state.type === surveyViewTypes.Share.name) {
       return (<div className="Container">
         <SurveyFill title={this.state.title}
                     description={this.state.description}
@@ -101,7 +118,9 @@ class SurveyView extends React.Component {
     if (this.state.type === surveyViewTypes.Statistics.name) {
       return (<div className="Container">
         <SurveyStats
+          id={this.state.id}
           title={this.state.title}
+          visibility = {this.state.visibility}
           description={this.state.description}
           questions={this.state.questions}
           updatePickedAnswerList={this.updatePickedAnswerList}

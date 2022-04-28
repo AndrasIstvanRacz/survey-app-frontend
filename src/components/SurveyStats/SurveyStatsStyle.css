@@ -14,3 +14,9 @@
     margin-left: .75rem;
     cursor: pointer;
 }
+
+.ShareLink {
+    margin-left: 2rem;
+    margin-right: auto;
+    color: black;
+}

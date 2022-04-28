@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseURL = 'https://survey-app-backend-deik.herokuapp.com'
+
 export async function addNewSurvey(title, description, visibility, questions, token){
   return await axios.post(baseURL + '/survey/addNew',
     {

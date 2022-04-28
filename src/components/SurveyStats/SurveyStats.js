@@ -3,6 +3,7 @@ import PieChart from "../Chart/Chart";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./SurveyStatsStyle.css"
+import {Link} from "react-router-dom";
 
 export default class SurveyStats extends React.Component {
   render() {
@@ -12,6 +13,12 @@ export default class SurveyStats extends React.Component {
         <EditIcon className="Icon" onClick={this.props.handelEdit}/>
         <DeleteIcon className="Icon" onClick={this.props.handelDelete}/>
       </div>
+      {this.props.visibility ? null :
+      <a
+        className="ShareLink"
+        href={"/view/share/" + this.props.id}>
+        {"https://survey-app-frontend.vercel.app/view/share/" + this.props.id}
+      </a>}
       <h3 className="SDescription">{this.props.description}</h3>
       <div className="SForm">
         {this.props.questions.map((q, questionIndex) => (
